@@ -1,28 +1,34 @@
 # 観測者不在 Webサイト
 
-absentobserver.com の開発用コピーです。
+[absentobserver.com](https://absentobserver.com/) のソースです。GitHubの `main` ブランチをNetlifyへ接続しています。
 
 ## ファイル
 
-- `public/index.html`：公開するページ。CSSとロゴ画像を含みます。
-- `netlify.toml`：Netlifyの公開フォルダを `public` に指定します。
+- `public/index.html`：公開ページ。CSSとロゴ画像を含みます。
+- `netlify.toml`：公開フォルダ `public` を指定します。ビルドコマンドは不要です。
 
 ## ローカル確認
 
-Python導入後、このフォルダで `python -m http.server 8080 --bind 127.0.0.1 --directory public` を実行し、ブラウザで `http://127.0.0.1:8080` を開きます。
+Pythonが使える環境で、このフォルダから次を実行します。
 
-メール登録部分はBenchmark Emailの外部サービスです。表示確認時にテスト登録は送信しません。
+```text
+python -m http.server 8080 --bind 127.0.0.1 --directory public
+```
 
-## GitHub・Netlify連携
+ブラウザで http://127.0.0.1:8080 を開きます。終了はCtrl+Cです。
 
-1. GitHubの保存先リポジトリと、コミットに使う名前・メールアドレスを確認します。
-2. このフォルダをGitHubへアップロードします。
-3. 現在のNetlifyサイトに、そのリポジトリの `main` ブランチを接続します。
-4. ビルドコマンドは空欄、公開フォルダは `public` とします。
-5. プレビューを確認してから本番の自動公開を検証します。
+メール登録部分はBenchmark Emailの外部サービスです。表示確認だけなら登録を送信する必要はありません。
 
-DNSやドメインの移転は不要です。現在のNetlifyサイトとの接続は未実施です。
+## 更新と公開
 
-## 元データの確認
+1. `public/index.html` を編集し、PC上で表示を確認します。
+2. 変更をコミットし、GitHubの `main` へ反映します。
+3. Netlifyが自動デプロイします。管理画面でPublishedを確認し、公開ページの表示を確認します。
 
-2026-09-13、Downloadsの `absentobserver_site(1).zip` 内のHTMLと公開サイトを比較しました。差分は公開ページ末尾のNetlify HUDスクリプトのみでした。元ZIPと公開サイトは変更していません。
+公開元：https://github.com/lwmasakibiz-hub/absentobserver-site
+
+デプロイ履歴：https://app.netlify.com/projects/absentobserver/deploys
+
+## 移行記録
+
+2026-09-13、元ZIPと公開HTMLを比較し、Netlifyの追加スクリプト以外は一致することを確認しました。既存のNetlifyプロジェクトへGitHubを接続し、同じドメインでの公開を確認しました。
